@@ -46,8 +46,8 @@ int main(){
                 auto quote=L"“"+n.text+L"”";
                 measure.MeasureString(quote.c_str(),-1,&font,RectF(0,0,622,115),&fmt,&bounds,&fitted,&lines);
                 require(fitted==int(quote.size()),"full shelf quote fits without clipping");
-                Font small(&family,14,FontStyleRegular,UnitPixel);quote=L"“"+n.text+L"”";
-                measure.MeasureString(quote.c_str(),-1,&small,RectF(0,0,152,125),&fmt,&bounds,&fitted,&lines);
+                Font sidebarFont(&family,14,FontStyleRegular,UnitPixel);quote=L"“"+n.text+L"”";
+                measure.MeasureString(quote.c_str(),-1,&sidebarFont,RectF(0,0,152,125),&fmt,&bounds,&fitted,&lines);
                 require(fitted==int(quote.size()),"full sidebar quote fits without clipping");
             }
             shelf.open=false;
