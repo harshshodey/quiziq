@@ -4,6 +4,8 @@ A polished, entirely native C++17 quiz application for Windows. A navy sidebar, 
 
 **Windows 10/11 · C++17 · Win32/GDI+ · MIT-licensed project code**
 
+[Download the Windows release](https://github.com/harshshodey/quiziq/releases/latest) · [Build and test status](https://github.com/harshshodey/quiziq/actions/workflows/windows.yml) · [Contributing](CONTRIBUTING.md)
+
 ![QuizIQ Literary Edition](screenshots/01-welcome.jpg)
 
 ## New in the Literary Edition
@@ -25,7 +27,7 @@ Full provenance is in `quote-sources.json`; `quote-verification.txt` records the
 
 ## Run
 
-Build the application using the instructions below, then double-click **QuizIQ.exe** (or `build/Release/QuizIQ.exe` with Visual Studio). The prepared project download also includes a prebuilt executable. Compiled binaries are excluded from source control.
+Download **QuizIQ.exe** or **QuizIQ-Project.zip** from the [latest release](https://github.com/harshshodey/quiziq/releases/latest), or build the application using the instructions below. Double-click **QuizIQ.exe** to play (or `build/Release/QuizIQ.exe` with Visual Studio). Compiled binaries are distributed as release assets and excluded from source control.
 
 Windows 10 or 11, 64-bit is required. No installation, browser, or internet connection is needed for the quiz. The provided MinGW executable links the compiler runtimes statically; Windows supplies GDI+ and the Win32 APIs.
 
@@ -80,7 +82,7 @@ cmake --build build --config Release
 ctest --test-dir build -C Release --output-on-failure
 ```
 
-Windows SDK libraries used: `gdiplus`, `user32`, `gdi32`, `shell32`, `ole32`, `uuid`, and `comdlg32`. Visual Studio requires the Desktop development with C++ workload. The prebuilt executable and test programs were compiled and verified with MinGW-w64 GCC 15.2.0. The CMake/Visual Studio route is supplied but was not executed on this machine, where CMake is unavailable.
+Windows SDK libraries used: `gdiplus`, `user32`, `gdi32`, `shell32`, `ole32`, `uuid`, and `comdlg32`. Visual Studio requires the Desktop development with C++ workload. The release executable was compiled and verified with MinGW-w64 GCC 15.2.0. The [Windows workflow](https://github.com/harshshodey/quiziq/actions/workflows/windows.yml) builds the CMake/Visual Studio version and runs all three test programs on GitHub's hosted runner.
 
 ## Project structure
 
