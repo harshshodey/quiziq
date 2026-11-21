@@ -1,0 +1,30 @@
+# Generated executables and build artifacts belong in release downloads.
+*.exe
+*.dll
+*.obj
+*.o
+*.a
+*.lib
+*.pdb
+*.ilk
+*.zip
+*.log
+/build/
+/build-*/
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Testing/
+*.tmp
+
+# Local editor settings and credentials must not be published.
+.vs/
+.vscode/
+.idea/
+.env
+.env.*
+!.env.example
+*.user
+*.suo
+Thumbs.db
+.DS_Store

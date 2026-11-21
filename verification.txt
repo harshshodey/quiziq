@@ -1,0 +1,108 @@
+QuizIQ 1.2 Literary Edition verification — 21 November 2026
+
+CURRENT RELEASE
+133,263 engine/model/storage checks passed.
+96,357 native rendering/layout checks passed.
+211 literary catalog, discovery and reading-timer checks passed.
+TOTAL: 229,831 automated checks passed in the final release build.
+See verification-build.log for the actual build/test output.
+
+LITERARY PROVENANCE
+16 excerpts, six authors, eight original works, eleven source chapters/acts.
+Each exact excerpt was matched as a verbatim substring of its downloaded
+primary text in Standard Ebooks. Case, words and punctuation are preserved;
+visual quotation marks and line wrapping are added by the interface.
+Truncated excerpts are explicitly identified as excerpts in the shelf.
+Fictional dialogue identifies its speaker; it is not presented as an author's
+personal advice. The quotes are human-authored literary text, not new AI jokes.
+See quote-sources.json and quote-verification.txt for the complete record.
+An optional tools/verify_sources.ps1 script rechecks live sources and catalog.
+
+NEW NATIVE INTERFACE CHECKS
+- Welcome screen attribution and contextual sidebar notes: passed.
+- Question-mark illustration opens the Hatter's original riddle: passed.
+- Shelf arrow navigation changes the note and source metadata: passed.
+- Copy quote reports success with author, work and source link: passed.
+- F1 opens the shelf during an active quiz: passed.
+- Timer remains frozen while the shelf is open: passed.
+- Escape returns with the same selected answer and elapsed time: passed.
+- Expanded pause screen displays Jerome K. Jerome with attribution: passed.
+- Return from the expanded pause screen to topics: passed.
+- All 16 notes fit both sidebar and shelf boxes at three viewport sizes: passed.
+- A hidden pause quote is not prematurely marked discovered: passed.
+- Shelf bounds, wraparound, discovery counts and all contextual mappings: passed.
+- Rendering reuses its bitmap until the window size changes.
+
+REGRESSION RECORD FROM THE PRECEDING REVIEW
+The engine, persistence and quiz behavior below are preserved. The current
+release adds the literary shelf, attribution, discovery and reading controls.
+
+BUILD
+Windows x64, MinGW-w64 GCC 15.2.0, C++17.
+Application: -O2 -Wall -Wextra -Werror; no compiler warnings.
+Standalone executable links MinGW runtimes statically.
+Import inspection: Windows system DLLs only; no MinGW runtime DLLs required.
+
+PASS 1 — LOGIC AND DATA
+133,263 checks passed in the normal optimized build, a debug build with
+_GLIBCXX_ASSERTIONS, and an optimized NDEBUG build with _GLIBCXX_ASSERTIONS.
+The checks do not use assert(), so Release/NDEBUG cannot disable them.
+
+Coverage: all 30 questions; all scores 0-100% across all topics; unanswered
+blocking; correct/incorrect and revised answers; invalid input; forward/back
+boundaries; all screen transition guards; retry reset; every result level;
+review and missed-only review boundaries; pause/resume and close cancellation;
+timer exclusion of paused intervals; keyboard focus wrap; empty bank rejection;
+75,000 deterministic mixed actions across three random seeds.
+
+PASS 2 — PERSISTENCE AND FAILURE HANDLING
+Included in the engine count above. Fresh/zero/perfect scores; reload;
+atomic replacement; preservation on invalid saves; missing paths;
+replacement failure; empty, truncated, malformed and out-of-range data;
+legacy data; distinction between unplayed (-1) and 0%; temp-file cleanup.
+Tests use isolated disposable files and do not change personal bests.
+
+PASS 3 — NATIVE VIEW AND FINAL REGRESSION
+96,357 checks passed using the application's actual GDI+ drawing functions.
+Viewports: 1200x800, 944x651, 1600x900.
+All topics, with 0%, 50%, 80%, 100% results.
+Coverage: visible action ids, scaled reachability, no overlapping interactive
+areas, enabled/disabled boundaries, pause modal isolation, answer trail focus,
+left-to-right results Tab order, and missed-only review controls.
+
+FINAL BUILD TOTAL: 229,831 automated checks passed, including 211 literary tests.
+
+ACTUAL WINDOWS UI CHECKS
+- Shift+Tab starts at the final enabled control: passed.
+- Topic shortcuts and the Science & Space flow: passed.
+- Enter cannot advance an unanswered question: passed.
+- Backtracking preserves the selected answer and answered count: passed.
+- Number-row and numeric-keypad answer selection: passed.
+- Escape pauses; answers remain; elapsed time freezes: passed.
+- Alt+F4 during a quiz asks before closing; Escape resumes: passed.
+- Completed Science & Space round: 8/10, 80%, two missed answers: passed.
+- Answer trail has a visible keyboard focus outline and opens review: passed.
+- Missed-only review jumps from question 2 to question 9: passed.
+- Last missed answer disables next: passed.
+- Native Save dialog exports a readable 1200x800 PNG: passed.
+- Cancelling export preserves results: passed.
+- Best score persists and displays after final executable restart: passed.
+- Final executable welcome screen and wordmark spacing: passed.
+
+FIXES AND UPGRADES
+- Corrected initial Shift+Tab selection and invisible answer-trail focus.
+- Guarded disabled and offscreen actions; ignored held-key repeat navigation.
+- Required mouse press and release on the same control; clear stale hover.
+- Added pause/resume, minimize pause, and active-round close confirmation.
+- Added missed-only answer review and native results image export.
+- Improved text contrast, status labels and correct/incorrect symbols.
+- Replaced silent/truncating score writes with validated atomic replacement.
+- Distinguish completed zero scores from unplayed topics.
+- Fit initial window to the working area; corrected wordmark overlap.
+- Tests remain active in Release; reordered keyboard focus to match layout.
+
+LIMITS
+Windows 10/11 x64 application; custom-drawn controls do not expose per-control
+screen-reader accessibility. Full-round progress is not persisted across exit.
+CMake/Visual Studio build route is provided but not run here; MinGW build tested.
+Automated and manual checks cannot prove absence of every possible defect.
